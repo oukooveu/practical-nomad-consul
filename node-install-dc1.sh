@@ -28,7 +28,7 @@ echo "Nomad Install Beginning..."
 # For now we use a static version. Set to the latest tested version you want here.
 NOMAD_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/nomad | jq -r ".current_version")
 cd /tmp/
-sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
+sudo curl -sSL https://hashicorp-releases.yandexcloud.net/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -C - -o nomad.zip
 if [ ! -d nomad ]; then
   sudo unzip nomad.zip
 fi
@@ -48,7 +48,7 @@ echo "Consul Install Beginning..."
 # Uncommend the first and comment the second line to get the latest edition
 # Otherwise use the static number
 CONSUL_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/consul | jq -r ".current_version")
-sudo curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
+sudo curl -sSL https://hashicorp-releases.yandexcloud.net/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip -C - -o consul.zip
 if [ ! -d consul ]; then
   sudo unzip /tmp/consul.zip
 fi
@@ -68,7 +68,7 @@ for bin in cfssl cfssl-certinfo cfssljson
 do
   echo "$bin Install Beginning..."
   if [ ! -f /tmp/${bin} ]; then
-    curl -sSL https://pkg.cfssl.org/R1.2/${bin}_linux-amd64 > /tmp/${bin}
+    curl -sSL https://pkg.cfssl.org/R1.2/${bin}_linux-amd64 -o /tmp/${bin}
   fi
   if [ ! -f /usr/local/bin/${bin} ]; then
     sudo install /tmp/${bin} /usr/local/bin/${bin}
@@ -86,9 +86,9 @@ echo "Java Installed Successfully"
 
 echo "Envconsul Install Beginning..."
 ENVCONSUL_VERSION="0.11.0"
-sudo curl -sSL https://releases.hashicorp.com/envconsul/${ENVCONSUL_VERSION}/envconsul_${ENVCONSUL_VERSION}_linux_386.zip > envconsul.zip
+sudo curl -sSL https://hashicorp-releases.yandexcloud.net/envconsul/${ENVCONSUL_VERSION}/envconsul_${ENVCONSUL_VERSION}_linux_386.zip -C - -o envconsul.zip
 if [ ! -d envconsul ]; then
-  sudo unzip /tmp/envconsul.zip
+  sudo unzip -o /tmp/envconsul.zip
 fi
 if [ ! -f /usr/bin/envconsul ]; then
   sudo install envconsul /usr/bin/envconsul

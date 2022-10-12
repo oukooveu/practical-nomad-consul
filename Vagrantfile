@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "bento/ubuntu-20.04" 
+  config.vm.box = "bento/ubuntu-22.04"
   config.vm.provider "virtualbox" do |vb|
         vb.memory = "1516"
   end
@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
     # Expose the nomad ports
     n.vm.network "forwarded_port", guest: 4646, host: 4646, auto_correct: true
     n.vm.network "forwarded_port", guest: 8500, host: 8500, auto_correct: true
-    n.vm.network "forwarded_port", guest: 9998, host: 9998, auto_correct: true
+    #n.vm.network "forwarded_port", guest: 9998, host: 9998, auto_correct: true
     n.vm.network "forwarded_port", guest: 9966, host: 9966, auto_correct: true
     n.vm.hostname = "server-dc1-1"
     n.vm.network "private_network", ip: "172.16.1.101"
