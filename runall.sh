@@ -9,3 +9,5 @@ nomad job run jobs/cli-jobs/petclinic-web.nomad
 nomad job run jobs/cli-jobs/petclinic-egw.nomad
 nomad job run jobs/cli-jobs/petclinic-api.nomad
 nomad job run jobs/cli-jobs/petclinic-ingw.nomad
+
+for i in consul-config/intention-*; do consul config write $i; done
