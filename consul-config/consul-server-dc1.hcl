@@ -1,7 +1,7 @@
 data_dir = "/opt/consul"
 
 server           = true
-bootstrap_expect = 1 
+bootstrap_expect = 1
 advertise_addr   = "{{ GetInterfaceIP `eth1` }}"
 client_addr      = "0.0.0.0"
 #bind_addr        = "{{ GetInterfaceIP `eth1` }}"
@@ -25,4 +25,10 @@ encrypt_verify_outgoing = true
 
 telemetry {
   prometheus_retention_time = "30s"
+}
+
+acl = {
+  enabled = true
+  default_policy = "allow"
+  enable_token_persistence = true
 }

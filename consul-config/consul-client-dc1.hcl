@@ -24,3 +24,9 @@ encrypt_verify_outgoing = true
 telemetry {
   prometheus_retention_time = "30s"
 }
+
+acl = {
+  enabled = true
+  default_policy = "allow"
+  enable_token_persistence = true
+}
